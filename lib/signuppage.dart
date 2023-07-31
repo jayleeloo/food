@@ -35,6 +35,44 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer:  Drawer(
+    
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 233, 39, 104),
+              ),
+              child:
+            Text('Draw List'),),
+            ListTile(
+              
+              title: Text('Home'),
+              onTap:() {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+            ListTile(
+              
+              title: Text('SignUp'),
+              onTap:() {
+                Navigator.pushNamed(context, '/signup');
+              },
+            ),
+            ListTile(
+              
+              title: Text('Orders'),
+              onTap:() {
+                Navigator.pushNamed(context, '/orders');
+              },
+             ),
+
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        shadowColor: Colors.teal,
+      ),
         backgroundColor: const Color.fromARGB(255, 229, 60, 116),
         body: SafeArea(
           child: Padding(

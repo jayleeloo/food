@@ -1,14 +1,69 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: non_constant_identifier_names
 
-class HomePage extends StatelessWidget {
-  const HomePage({
+import 'package:flutter/material.dart';
+import 'package:food/Orders.dart';
+import 'package:food/main.dart';
+import 'package:food/models.dart';
+import 'package:hive_flutter/adapters.dart';
+
+class HomePage extends StatefulWidget {
+  HomePage({
     super.key,
   });
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final TextEditingController _orderscontroller = TextEditingController();
+   late Box<MyOrders> MyOrdersbox;
+
+  @override
+  void initState() {
+    super.initState();
+    MyOrdersbox = Hive.box(ordersbox);
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _orderscontroller.text;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      backgroundColor: const Color.fromARGB(255, 5, 89, 128),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 233, 39, 104),
+              ),
+              child: Text('Draw List'),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+            ListTile(
+              title: Text('SignUp'),
+              onTap: () {
+                Navigator.pushNamed(context, '/signup');
+              },
+            ),
+            ListTile(
+              title: Text('Orders'),
+              onTap: () {
+                Navigator.pushNamed(context, '/orders');
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -19,10 +74,12 @@ class HomePage extends StatelessWidget {
         title: const Text('EatHappyMenuApp'),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body:
+       SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
+  
+          Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
                 color: const Color.fromARGB(255, 156, 207, 246),
@@ -50,11 +107,14 @@ class HomePage extends StatelessWidget {
                             const Text('BEVERAGES'),
                             Container(
                               decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 238, 225, 240),
+                                  color:
+                                      const Color.fromARGB(255, 238, 225, 240),
                                   borderRadius: BorderRadius.circular(20)),
                               width: 150,
                               height: 150,
-                               child: Image.asset('assets/images/lunch.jpg',),
+                              child: Image.asset(
+                                'assets/images/lunch.jpg',
+                              ),
                             ),
                             const Text('LUNCH/FASTFOOD')
                           ],
@@ -68,8 +128,7 @@ class HomePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20)),
                               width: 150,
                               height: 150,
-                              child: Image.asset(
-                                  'assets/images/Breakfast.jpg'),
+                              child: Image.asset('assets/images/Breakfast.jpg'),
                             ),
                             const Text('BREAKFAST'),
                             Container(
@@ -78,8 +137,7 @@ class HomePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20)),
                               width: 150,
                               height: 150,
-                              child:
-                                  Image.asset('assets/images/dinner.jpg'),
+                              child: Image.asset('assets/images/dinner.jpg'),
                             ),
                             const Text('DINNER/DESSERT')
                           ],
@@ -88,6 +146,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            
             Column(
               children: [
                 Padding(
@@ -102,33 +161,28 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 233, 95, 85),
-                                    borderRadius:
-                                        BorderRadius.circular(20)),
+                                    color:
+                                        const Color.fromARGB(255, 233, 95, 85),
+                                    borderRadius: BorderRadius.circular(20)),
                                 width: 150,
                                 height: 150,
-                                child:
-                                  Image.asset('assets/images/Takeout.jpg'),
+                                child: Image.asset('assets/images/Takeout.jpg'),
                               ),
                               const Text('TAKEOUT')
                             ],
                           ),
                           Column(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 134, 71, 66),
-                                    borderRadius:
-                                        BorderRadius.circular(20)),
+                                    color:
+                                        const Color.fromARGB(255, 134, 71, 66),
+                                    borderRadius: BorderRadius.circular(20)),
                                 width: 150,
                                 height: 150,
                               ),
@@ -145,12 +199,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        elevation: 30.0,
-        icon: const Icon(Icons.shopping_basket),
-        label: const Text('FoodCart'),
-      ),
+      
     );
   }
 }
