@@ -37,30 +37,36 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 233, 39, 104),
               ),
               child: Text('Draw List'),
             ),
             ListTile(
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.pushNamed(context, '/home');
               },
             ),
             ListTile(
-              title: Text('SignUp'),
+              title: const Text('SignUp'),
               onTap: () {
                 Navigator.pushNamed(context, '/signup');
               },
             ),
             ListTile(
-              title: Text('Orders'),
+              title: const Text('Orders'),
               onTap: () {
                 Navigator.pushNamed(context, '/orders');
               },
             ),
+            ListTile(
+              title: const Text('Login'),
+              onTap: () {
+                Navigator.pushNamed(context, '/login');}
+            ),
+           
           ],
         ),
       ),
